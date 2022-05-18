@@ -85,25 +85,26 @@ To get started reading and analyzing the data:
 <!-- -->
 
     library(cronR)
+    library(stringr)
 
     # Daily cron job to fetch cases
-    cmd_cases <- cron_rscript(rscript = stringr::str_c(Sys.getenv("COVID19PHILLY_DIR"),
-                                                 "philadelphia_covid19_cases_cron.R"))
+    cmd_cases <- cron_rscript(rscript = str_c(Sys.getenv("COVID19PHILLY_DIR"),
+                                              "philadelphia_covid19_cases_cron.R"))
     cron_add(command = cmd_cases, frequency = 'daily', at='2PM', id = 'covid19_cases')
 
     # Daily cron job to fetch deaths
-    cmd_deaths <- cron_rscript(rscript = stringr::str_c(Sys.getenv("COVID19PHILLY_DIR"),
-                                                       "philadelphia_covid19_deaths_cron.R"))
+    cmd_deaths <- cron_rscript(rscript = str_c(Sys.getenv("COVID19PHILLY_DIR"),
+                                               "philadelphia_covid19_deaths_cron.R"))
     cron_add(command = cmd_deaths, frequency = 'daily', at='2PM', id = 'covid19_deaths')
 
     # Daily cron job to fetch hospitalizations
-    cmd_hosp <- cron_rscript(rscript = stringr::str_c(Sys.getenv("COVID19PHILLY_DIR"),
-                                                       "philadelphia_covid19_hospitalizations_cron.R"))
+    cmd_hosp <- cron_rscript(rscript = str_c(Sys.getenv("COVID19PHILLY_DIR"),
+                                      "philadelphia_covid19_hospitalizations_cron.R"))
     cron_add(command = cmd_hosp, frequency = 'daily', at='2PM', id = 'covid19_hospitalizations')
 
     # Daily cron job to fetch vaccinations
-    cmd_vaccs <- cron_rscript(rscript = stringr::str_c(Sys.getenv("COVID19PHILLY_DIR"),
-                                                       "philadelphia_covid19_vaccinations_cron.R"))
+    cmd_vaccs <- cron_rscript(rscript = str_c(Sys.getenv("COVID19PHILLY_DIR"),
+                                          "philadelphia_covid19_vaccinations_cron.R"))
     cron_add(command = cmd_vaccs, frequency = 'daily', at='2PM', id = 'covid19_vaccinations')
 
     # Check scheduled jobs
@@ -129,7 +130,7 @@ cases_by_date <- build_historical_dataset("cases_by_date")
 cases_by_date
 ```
 
-    ## # A tibble: 144,166 x 5
+    ## # A tibble: 227,071 × 5
     ##    result_date etl_timestamp       positive negative collection_date
     ##    <date>      <dttm>                 <dbl>    <dbl> <date>         
     ##  1 2020-03-27  2020-06-04 17:20:02      222      769 NA             
@@ -142,7 +143,7 @@ cases_by_date
     ##  8 2020-05-01  2020-06-04 17:20:02      414     1104 NA             
     ##  9 2020-05-20  2020-06-04 17:20:02      193     1697 NA             
     ## 10 2020-04-24  2020-06-04 17:20:02      490     1147 NA             
-    ## # … with 144,156 more rows
+    ## # … with 227,061 more rows
 
 ``` r
 # Cases by zip code and reporting date
@@ -150,7 +151,7 @@ cases_by_zipcode <- build_historical_dataset("cases_by_zipcode")
 cases_by_zipcode
 ```
 
-    ## # A tibble: 29,189 x 4
+    ## # A tibble: 38,632 × 4
     ##    zip_code etl_timestamp         NEG   POS
     ##       <dbl> <dttm>              <dbl> <dbl>
     ##  1    19122 2020-06-01 17:20:02  1018   245
@@ -163,7 +164,7 @@ cases_by_zipcode
     ##  8    19125 2020-06-01 17:20:02  1117   204
     ##  9    19106 2020-06-01 17:20:02   589    55
     ## 10    19132 2020-06-01 17:20:02  1720   573
-    ## # … with 29,179 more rows
+    ## # … with 38,622 more rows
 
 ### Analysis: COVID-19’s incidence and effective reproductive number in Philly
 
